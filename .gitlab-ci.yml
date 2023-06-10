@@ -1,0 +1,27 @@
+deploy-server-1-192.82.92.226:
+  tags:
+    - shelby
+  stage: deploy
+  script:
+    # ar bkh bo bu da dd do du go gs khe kho khs moc om or ov se su to ub uv za
+    - rsync --rsync-path="sudo rsync" --chown www-data:www-data -avz --delete $CI_PROJECT_DIR/ root@192.82.92.226:/var/www/html/ar/wp-content/plugins/events-manager/
+    - rsync --rsync-path="sudo rsync" --chown www-data:www-data -avz --delete $CI_PROJECT_DIR/ root@192.82.92.226:/var/www/html/ar/en/wp-content/plugins/events-manager/
+    - ssh root@192.82.92.226 "bash /root/moc-events-manager.sh"
+    - ssh root@192.82.92.226 "bash /root/moc-events-manager-en.sh"
+  only: 
+    - master 
+  when: manual 
+
+deploy-server-2-192.82.92.241:
+  tags:
+    - shelby
+  stage: deploy
+  script:
+    # bkm caa ctm kkm mag mtm ncch nhm nm ovpa zbm
+    - rsync --rsync-path="sudo rsync" --chown www-data:www-data -avz --delete $CI_PROJECT_DIR/ root@192.82.92.241:/var/www/html/bkm/wp-content/plugins/events-manager/
+    - rsync --rsync-path="sudo rsync" --chown www-data:www-data -avz --delete $CI_PROJECT_DIR/ root@192.82.92.241:/var/www/html/bkm/en/wp-content/plugins/events-manager/
+    - ssh root@192.82.92.241 "bash /root/moc-events-manager.sh"
+    - ssh root@192.82.92.241 "bash /root/moc-events-manager-en.sh"
+  only: 
+    - master 
+  when: manual 

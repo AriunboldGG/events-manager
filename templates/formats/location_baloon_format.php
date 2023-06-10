@@ -1,0 +1,1 @@
+<strong>#_LOCATIONNAME</strong><br/>#_LOCATIONADDRESS - #_LOCATIONTOWN<br/><a href="#_LOCATIONPAGEURL">'.__('Events', 'events-manager').'</a>

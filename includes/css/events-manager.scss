@@ -1,0 +1,204 @@
+//@import "../../assets/css/include-media";
+@mixin input-select-toggle( $width, $height, $background ){
+	&:after {
+		display: inline-flex !important;
+		content: '';
+		position: absolute;
+		border: 0 !important;
+		background-image: $background;
+		background-size: $width $height;
+		height: $height;
+		width: $width;
+		margin-top: calc( #{$height}/2 * -1 );
+		right: 8px;
+		top: 50%;
+	}
+}
+
+@mixin input-icon( $bg, $size : 18px ){
+	background: $bg 8px 50%  no-repeat !important;
+	background-size: $size !important;
+	padding-left: $size * 2 !important;
+
+}
+
+.em {
+	@import "assets/pixelbones.vars";
+	@import "assets/pixelbones";
+
+	// counter settings (bubble showing applied advanced appearing next to trigger and headings)
+	--counter-background : #F36752;
+	--counter-color : #fff;
+	--counter-background-tentative : #ddd;
+	--counter-color-tentative : #888;
+
+	@import "partials";
+
+	/** The Triggers - Search and other parts triggering search **/
+	button.em-clickable {
+		border : 0 !important;
+		cursor: pointer !important;
+		justify-self: start !important;
+		background-color: transparent;
+		margin: 0 !important;
+		padding: 0 !important;
+		border: 0 !important;
+		outline: none;
+		&:focus {
+			outline: none;
+		}
+	}
+
+	button.input.em-tooltip-ddm {
+		background-image: var(--icon-chevron-down) !important;
+		background-position: calc(100% - 15px) 50% !important;
+		background-repeat: no-repeat !important;
+		background-size: 15px !important;
+		padding-right: 40px !important;
+	}
+	button.input.em-tooltip-ddm[aria-expanded="true"] {
+		background-image: var(--icon-chevron-up) !important;
+	}
+	.em-tooltip-ddm-content {
+		@include screen-readers-only();
+	}
+
+	/* General Styles */
+	.em-datepicker {
+		.em-datepicker-data.hidden {
+			position:absolute !important;
+			left:-10000px !important;
+			top:auto !important;
+			width:1px !important;
+			height:1px !important;
+			overflow:hidden !important;
+		}
+	}
+
+	/* Search Results & Event Views */
+	&.em-view-container {
+		position: relative;
+	}
+
+	.em-location-map-container{
+		aspect-ratio: 2/1;
+		width: 100%;
+		.em-loading-maps, .em-location-map-404 {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			width: 100%;
+			border: 1px dashed #d0d0d0;
+			background-color: #fafafa;
+			color: #888;
+			font-size: 18px;
+			padding: 20px;
+			text-align: center;
+			svg {
+				width: 100px;
+				max-height: 100px;
+			}
+			span {
+				display:block;
+				margin-bottom:20px;
+				font-size:20px;
+				color: #aaa;
+			}
+		}
+		.em-loading {
+			background-position : 50% 10%;
+		}
+		.em-locations-map, .em-location-map, .em-location-map-content {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	// General Styling
+	--font-size: 16px;
+	--line-height: 20px;
+	--default-color : #666666;
+	--default-border: #4b86b4;
+	/* #2a4d69 • #4b86b4 • #adcbe3 • #e7eff6 • #63ace5 */
+	--palette-1-bg : #03396c; /* for things like table headings or borders of tables */
+	--palette-1-color : #FFFFFF;
+	--meta-color : #787878;
+	--meta-bg : transparent;
+	--main-bg : #F5F5F5; // bookings
+	--main-h3-color : #777777; // bookings
+	--main-border-color : #cdcdcd; // bookings
+
+	/*
+		Icons
+	*/
+	.em-icon {
+		display: inline-block;
+		font-size: 20px;
+		line-height: 22px;
+		width: 20px;
+		height: 20px;
+		color: var(--meta-dashicons);
+		margin: 0 0 -4px; // leaves 16px line height
+		padding: 0;
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		background-size: 20px;
+
+		&.em-icon-calendar { background-image : var(--icon-calendar); }
+		&.em-icon-clock { background-image : var(--icon-clock); }
+		&.em-icon-list-grouped { background-image : var(--icon-list-grouped); }
+		&.em-icon-spinner { background-image : var(--icon-spinner); }
+		&.em-icon-filter { background-image : var(--icon-filter); }
+		&.em-icon-list { background-image : var(--icon-list); }
+		&.em-icon-map { background-image : var(--icon-map); }
+		&.em-icon-location { background-image : var(--icon-location); }
+		&.em-icon-settings { background-image : var(--icon-settings); }
+		&.em-icon-close { background-image : var(--icon-close); }
+		&.em-icon-chevron-down { background-image : var(--icon-chevron-down); }
+		&.em-icon-chevron-up { background-image : var(--icon-chevron-up); }
+		&.em-icon-magnifying-glass { background-image : var(--icon-magnifying-glass); }
+		&.em-icon-location-on { background-image : var(--icon-location-on); }
+		&.em-icon-location-off { background-image : var(--icon-location-off); }
+		&.em-icon-checkmark { background-image : var(--icon-checkmark); }
+		&.em-icon-plus { background-image : var(--icon-plus); }
+		&.em-icon-minus { background-image : var(--icon-minus); }
+		&.em-icon-compass { background-image : var(--icon-compass); }
+		&.em-icon-options-v { background-image : var(--icon-options-v); }
+		&.em-icon-tag { background-image : var(--icon-tag); }
+		&.em-icon-folder { background-image : var(--icon-folder); }
+		&.em-icon-category { background-image : var(--icon-folder); }
+		&.em-icon-point-down { background-image : var(--icon-point-down); }
+		&.em-icon-ticket { background-image : var(--icon-ticket); }
+		&.em-icon-at { background-image : var(--icon-at); }
+	}
+	button.input, .button.input,
+	.input button, .input .button {
+		&.with-icon {
+			padding-left : 20px !important;
+			.em-icon {
+				margin-right: 6px;
+			}
+		}
+		&.with-icon-right {
+			padding-right : 20px !important;
+			.em-icon {
+				margin-left: 6px;
+			}
+		}
+		.em-icon {
+			width: 18px;
+			height: 18px;
+			background-size: 18px;
+		}
+	}
+
+}
+/* Fix z-index issues for some 3rd party stuff */
+body .pac-container, .em .flatpickr-calendar {
+	z-index : 100000 !important;
+}
+
+@import 'events_manager';
+@import "partials/libraries";
